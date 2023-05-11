@@ -1,16 +1,16 @@
-# bolsa_projeto
+# Projeto de Classificação
+Este é um projeto desenvolvido como parte do processo seletivo para a vaga de Desenvolvedor Mobile Flutter na empresa Tabulero.
 
-A new Flutter project.
+# Descrição do Projeto
+O projeto consiste na criação de um aplicativo móvel utilizando a linguagem de programação Dart e o framework Flutter. 
 
-## Getting Started
+# Funcionalidades Principais
+O aplicativo possui as seguintes funcionalidades principais:
 
-This project is a starting point for a Flutter application.
+Autenticação de Usuário:possibilidade de realizar login no aplicativo.
 
-A few resources to get you started if this is your first Flutter project:
+Lista de Jogos: Os usuários podem visualizar uma lista de jogos
+obtidas de um acervo e obter mais detalhes sobre o jogo escolhido.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Detalhe de um jogo: Acessar dados detalhados
+de um dos jogos exibidos para saber mais informações sobre eles.
