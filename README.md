@@ -7,7 +7,7 @@ O projeto consiste na criação de um aplicativo móvel utilizando a linguagem d
 # Funcionalidades Principais
 O aplicativo possui as seguintes funcionalidades principais:
 
-Autenticação de Usuário:possibilidade de realizar login no aplicativo.
+Autenticação de Usuário: Possibilidade de realizar login no aplicativo.
 
 Lista de Jogos: Os usuários podem visualizar uma lista de jogos
 obtidas de um acervo e obter mais detalhes sobre o jogo escolhido.
