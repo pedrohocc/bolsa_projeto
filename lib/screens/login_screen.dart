@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      postLogin(_email.text, _senha.text).then((value) {
+                      logar(_email.text, _senha.text).then((value) {
                         if (value == 'Logado com sucesso') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(
@@ -113,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               )
                               .closed
                               .then((value) => {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/games')
+                                    Navigator.of(context)
+                                        .pushReplacementNamed('/games')
                                   });
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

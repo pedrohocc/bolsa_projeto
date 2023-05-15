@@ -3,7 +3,7 @@ import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<String> postLogin(String email, String senha) async {
+Future<String> logar(String email, String senha) async {
   var url = Uri.parse('http://206.189.206.44:8080/login');
   var header = {'Content-Type': 'application/json'};
   var body = jsonEncode({'email': email, 'senha': senha});
