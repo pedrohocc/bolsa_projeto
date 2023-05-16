@@ -13,7 +13,7 @@ class GamesScreen extends StatefulWidget {
 class _GamesScreenState extends State<GamesScreen> {
   int _pagina = 1;
   List<CardGame> gameList = [];
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool refresh = false;
 
   @override
@@ -35,7 +35,7 @@ class _GamesScreenState extends State<GamesScreen> {
           future: JogosDao().getGames(_pagina, gameList),
           builder: (context, snapshot) {
             if (refresh) {
-              WidgetsBinding.instance?.addPostFrameCallback((_) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
                 if (_scrollController.hasClients) {
                   _scrollController.jumpTo(
                     _scrollController.position.maxScrollExtent,

@@ -20,7 +20,6 @@ class JogosDao {
     );
     if (response.body.isNotEmpty) {
       var bodyJson = jsonDecode(response.body);
-      print(bodyJson);
       lista.addAll(_convertToGame(bodyJson));
       return lista;
     } else {

@@ -1,4 +1,4 @@
-package com.example.bolsa_projeto
+package com.example.projeto
 
 import io.flutter.embedding.android.FlutterActivity
 
