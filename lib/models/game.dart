@@ -1,5 +1,5 @@
 class Game {
-  String _imagem;
+  String? _imagem;
   String _nome;
   String _ano;
 
@@ -15,7 +15,7 @@ class Game {
         _nome = map['nome'],
         _ano = map['ano'];
 
-  String getImagem() {
+  String? getImagem() {
     return _imagem;
   }
 

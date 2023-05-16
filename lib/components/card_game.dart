@@ -26,7 +26,8 @@ class CardGame extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ImageNetwork(
-                    image: game.getImagem(),
+                    image: game.getImagem() != null ? game.getImagem()! : '',
+                    onError: Icon(Icons.error_rounded),
                     height: 100,
                     width: 100,
                     fitWeb: BoxFitWeb.fill,

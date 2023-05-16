@@ -18,9 +18,14 @@ class JogosDao {
       url,
       headers: header,
     );
-    var bodyJson = jsonDecode(response.body);
-    lista.addAll(_convertToGame(bodyJson));
-    return lista;
+    if (response.body.isNotEmpty) {
+      var bodyJson = jsonDecode(response.body);
+      print(bodyJson);
+      lista.addAll(_convertToGame(bodyJson));
+      return lista;
+    } else {
+      return lista;
+    }
   }
 
   List<CardGame> _convertToGame(dynamic json) {

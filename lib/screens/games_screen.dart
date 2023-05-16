@@ -12,12 +12,13 @@ class GamesScreen extends StatefulWidget {
 
 class _GamesScreenState extends State<GamesScreen> {
   int _pagina = 1;
-  List<CardGame> listaTeste = [];
+  List<CardGame> gameList = [];
   ScrollController _scrollController = ScrollController();
   bool refresh = false;
 
   @override
   Widget build(BuildContext context) {
+    print('pagina $_pagina');
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista de jogos"),
@@ -31,7 +32,7 @@ class _GamesScreenState extends State<GamesScreen> {
           ),
         ),
         child: FutureBuilder(
-          future: JogosDao().getGames(_pagina, listaTeste),
+          future: JogosDao().getGames(_pagina, gameList),
           builder: (context, snapshot) {
             if (refresh) {
               WidgetsBinding.instance?.addPostFrameCallback((_) {
