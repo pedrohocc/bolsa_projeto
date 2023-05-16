@@ -1,6 +1,7 @@
 import 'package:bolsa_projeto/components/card_game.dart';
 import 'package:bolsa_projeto/data/jogos_dao.dart';
 import 'package:flutter/material.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class GamesScreen extends StatefulWidget {
   const GamesScreen({super.key});
@@ -53,7 +54,15 @@ class _GamesScreenState extends State<GamesScreen> {
                       if (index + 1 == cards.length) {
                         return Column(
                           children: [
-                            card,
+                            ZoomTapAnimation(
+                                onTap: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("index do item: $index"),
+                                    ),
+                                  );
+                                },
+                                child: card),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: SizedBox(
@@ -68,6 +77,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                   },
                                   child: Text(
                                     'Carregar mais',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
@@ -76,7 +86,23 @@ class _GamesScreenState extends State<GamesScreen> {
                           ],
                         );
                       } else {
-                        return card;
+                        return SizedBox(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ZoomTapAnimation(
+                                  onTap: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text("index do item: $index"),
+                                      ),
+                                    );
+                                  },
+                                  child: card),
+                            ],
+                          ),
+                        );
                       }
                     },
                   );

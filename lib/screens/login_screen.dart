@@ -99,37 +99,41 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      logar(_email.text, _senha.text).then((value) {
-                        if (value == 'Logado com sucesso') {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(
-                                SnackBar(
-                                  duration: Duration(seconds: 1),
-                                  content: Text("Logado com sucesso"),
-                                ),
-                              )
-                              .closed
-                              .then((value) => {
-                                    Navigator.of(context)
-                                        .pushReplacementNamed('/games')
-                                  });
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(value),
-                            ),
-                          );
-                        }
-                      });
-                    }
-                  },
-                  child: const Text(
-                    "ENTRAR",
-                    style: TextStyle(color: Colors.white),
-                  ))
+              SizedBox(
+                width: 120,
+                height: 40,
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        logar(_email.text, _senha.text).then((value) {
+                          if (value == 'Logado com sucesso') {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                                  SnackBar(
+                                    duration: Duration(seconds: 1),
+                                    content: Text("Logado com sucesso"),
+                                  ),
+                                )
+                                .closed
+                                .then((value) => {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed('/games')
+                                    });
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(value),
+                              ),
+                            );
+                          }
+                        });
+                      }
+                    },
+                    child: const Text(
+                      "ENTRAR",
+                      style: TextStyle(color: Colors.white),
+                    )),
+              )
             ],
           ),
         ),

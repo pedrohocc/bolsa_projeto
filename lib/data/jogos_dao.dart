@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:bolsa_projeto/models/game.dart';
 import 'package:http/http.dart' as http;

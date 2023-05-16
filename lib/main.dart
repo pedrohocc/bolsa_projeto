@@ -1,6 +1,7 @@
 import 'package:bolsa_projeto/screens/games_screen.dart';
 import 'package:bolsa_projeto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,14 @@ class MyApp extends StatelessWidget {
 }
 
 ThemeData theme = ThemeData(
+  textTheme: TextTheme(
+    titleMedium: GoogleFonts.aBeeZee(),
+    titleLarge: GoogleFonts.aBeeZee(),
+    titleSmall: GoogleFonts.aBeeZee(),
+    bodyMedium: GoogleFonts.aBeeZee(),
+    bodySmall: GoogleFonts.aBeeZee(),
+    bodyLarge: GoogleFonts.aBeeZee(),
+  ),
   colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Colors.white,
@@ -47,6 +56,7 @@ ThemeData theme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
+      textStyle: MaterialStatePropertyAll(GoogleFonts.aBeeZee()),
       backgroundColor: MaterialStatePropertyAll(Colors.deepPurple),
     ),
   ),
