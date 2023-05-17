@@ -6,8 +6,7 @@ import '../models/game.dart';
 
 class CardGame extends StatelessWidget {
   final Game game;
-  final Function? function;
-  const CardGame({super.key, required this.game, this.function});
+  const CardGame({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +25,8 @@ class CardGame extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ImageNetwork(
-                    image: game.getImagem() != null ? game.getImagem()! : '',
-                    onError: Icon(Icons.error_rounded),
+                    image: game.getImagem() ?? '',
+                    onError: Icon(Icons.no_photography_outlined),
                     height: 100,
                     width: 100,
                     fitWeb: BoxFitWeb.fill,

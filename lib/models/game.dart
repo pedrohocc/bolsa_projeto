@@ -1,19 +1,22 @@
 class Game {
-  String? _imagem;
-  String _nome;
-  String _ano;
+  final String? _imagem;
+  final String _nome;
+  final String _ano;
+  final int _id;
 
-  Game(this._imagem, this._nome, this._ano);
+  Game(this._imagem, this._nome, this._ano, this._id);
 
   Game.empty()
       : _imagem = '',
         _ano = '',
-        _nome = '';
+        _nome = '',
+        _id = 0;
 
   Game.fromMap(Map map)
       : _imagem = map['imagem'],
         _nome = map['nome'],
-        _ano = map['ano'];
+        _ano = map['ano'],
+        _id = map['id'];
 
   String? getImagem() {
     return _imagem;
@@ -27,15 +30,7 @@ class Game {
     return _ano;
   }
 
-  void setImagem(String url) {
-    _imagem = url;
-  }
-
-  void setNome(String nome) {
-    _nome = nome;
-  }
-
-  void setAno(String ano) {
-    _ano = ano;
+  int getID() {
+    return _id;
   }
 }

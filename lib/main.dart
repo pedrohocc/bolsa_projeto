@@ -1,9 +1,13 @@
+import 'package:bolsa_projeto/data/datails_game_dao.dart';
+import 'package:bolsa_projeto/data/preferences.dart';
+import 'package:bolsa_projeto/screens/details_game_screen.dart';
 import 'package:bolsa_projeto/screens/games_screen.dart';
 import 'package:bolsa_projeto/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -19,6 +23,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const LoginScreen(),
         '/games': (context) => const GamesScreen(),
+        '/details': (context) {
+          final valores = ModalRoute.of(context)!.settings.arguments as Map;
+          return DetailsGameScreen(
+            valores: valores,
+          );
+        }
       },
     );
   }

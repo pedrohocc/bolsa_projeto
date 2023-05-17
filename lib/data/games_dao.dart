@@ -6,24 +6,28 @@ import 'package:http/http.dart' as http;
 import '../components/card_game.dart';
 
 class JogosDao {
-  Future<List<CardGame>> getGames(int pagina, List<CardGame> lista) async {
-    String token = await Preferences().getToken();
+  Future<List<CardGame>?> getGames(int pagina, List<CardGame> lista) async {
+    try {
+      String token = await Preferences().getToken();
 
-    var url = Uri.parse("http://206.189.206.44:8080/api/jogo?page=$pagina");
-    var header = {
-      'Content-Type': 'application/json',
-      'Authorization': token,
-    };
-    var response = await http.get(
-      url,
-      headers: header,
-    );
-    if (response.body.isNotEmpty) {
-      var bodyJson = jsonDecode(response.body);
-      lista.addAll(_convertToGame(bodyJson));
-      return lista;
-    } else {
-      return lista;
+      var url = Uri.parse("http://206.189.206.44:8080/api/jogo?page=$pagina");
+      var header = {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+      };
+      var response = await http.get(
+        url,
+        headers: header,
+      );
+      if (response.body.isNotEmpty) {
+        var bodyJson = jsonDecode(response.body);
+        lista.addAll(_convertToGame(bodyJson));
+        return lista;
+      } else {
+        return lista;
+      }
+    } catch (e) {
+      return null;
     }
   }
 
@@ -34,7 +38,8 @@ class JogosDao {
       Map mapJson = {
         'imagem': item['urlCapa'],
         'nome': item['nome'],
-        'ano': item['ano'].toString()
+        'ano': item['ano'].toString(),
+        'id': item['id']
       };
       games.add(Game.fromMap(mapJson));
     }

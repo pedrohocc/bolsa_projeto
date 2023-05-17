@@ -1,4 +1,6 @@
+import 'package:bolsa_projeto/data/datails_game_dao.dart';
 import 'package:bolsa_projeto/data/logar.dart';
+import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:bolsa_projeto/helpers/is_null_or_empty.dart';
 
@@ -18,10 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("GamesApp"),
-        centerTitle: true,
-      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -126,6 +124,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             );
                           }
+                        }).catchError((e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(e),
+                            ),
+                          );
                         });
                       }
                     },

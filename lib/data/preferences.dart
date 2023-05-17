@@ -6,6 +6,11 @@ class Preferences {
     prefs.setString('token', token);
   }
 
+  Future<void> delete() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', '');
+  }
+
   Future<String> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String token = prefs.get('token').toString();

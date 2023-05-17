@@ -1,5 +1,7 @@
 import 'package:bolsa_projeto/components/card_game.dart';
-import 'package:bolsa_projeto/data/jogos_dao.dart';
+import 'package:bolsa_projeto/data/games_dao.dart';
+import 'package:bolsa_projeto/data/preferences.dart';
+import 'package:bolsa_projeto/helpers/show_dialog_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -18,11 +20,17 @@ class _GamesScreenState extends State<GamesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('pagina $_pagina');
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de jogos"),
+        title: Text("Jogos"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                exibirDialog(context);
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -52,15 +60,19 @@ class _GamesScreenState extends State<GamesScreen> {
                     itemCount: cards.length,
                     itemBuilder: (context, index) {
                       final CardGame card = cards[index];
+                      Map parametros = {
+                        'id': card.game.getID(),
+                        'nome': card.game.getNome()
+                      };
                       if (index + 1 == cards.length) {
                         return Column(
                           children: [
                             ZoomTapAnimation(
                                 onTap: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text("index do item: $index"),
-                                    ),
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/details',
+                                    arguments: (parametros),
                                   );
                                 },
                                 child: card),
@@ -94,10 +106,10 @@ class _GamesScreenState extends State<GamesScreen> {
                             children: [
                               ZoomTapAnimation(
                                   onTap: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text("index do item: $index"),
-                                      ),
+                                    Navigator.pushNamed(
+                                      context,
+                                      '/details',
+                                      arguments: (parametros),
                                     );
                                   },
                                   child: card),
@@ -108,23 +120,25 @@ class _GamesScreenState extends State<GamesScreen> {
                     },
                   );
                 } else {
-                  return Text('empty');
+                  return Center(child: Text('Sem jogos!'));
                 }
               } else {
-                return Text('null or notHasData');
+                return Center(
+                    child: Text('Não foi possivel carregar os jogos!'));
               }
             } else {
               return Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text('Carregando...'),
-                  ),
-                  CircularProgressIndicator(color: Colors.deepPurple),
-                ],
-              ));
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text('Carregando...'),
+                    ),
+                    CircularProgressIndicator(color: Colors.deepPurple),
+                  ],
+                ),
+              );
             }
           },
         ),
