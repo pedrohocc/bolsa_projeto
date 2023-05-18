@@ -13,7 +13,7 @@ class Preferences {
   Future<void> delete() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('token', '');
+      prefs.remove('token');
     } catch (e) {
       throw Exception('erro ao sair');
     }
