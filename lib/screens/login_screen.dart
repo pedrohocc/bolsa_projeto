@@ -100,11 +100,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 40,
                 child: ElevatedButton(
                     onPressed: () {
+                      FocusScope.of(context).requestFocus(FocusNode());
                       if (_formKey.currentState!.validate()) {
                         logar(_emailController.text, _senhaController.text)
                             .then((value) {
                           if (value == 'Logado com sucesso') {
-                            FocusScope.of(context).requestFocus(FocusNode());
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(
                                   const SnackBar(
