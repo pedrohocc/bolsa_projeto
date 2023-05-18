@@ -1,27 +1,49 @@
 import 'dart:convert';
 import 'package:bolsa_projeto/data/preferences.dart';
+import 'package:bolsa_projeto/models/details_game.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 class DetailsGameDao {
-  Future<Map> getByIndex(int id) async {
-    String token = await Preferences().getToken();
-    Map detailsGame;
-
+  Future<DetailsGame> getByIndex(int id) async {
+    final String token = await Preferences().getToken();
+    Map detailsGameMap;
     var url = Uri.parse('http://206.189.206.44:8080/api/jogo/$id');
     var header = {
       'Content-Type': 'application/json',
       'Authorization': token,
     };
-    var response = await http.get(
-      url,
-      headers: header,
-    );
-    var bodyJson = jsonDecode(response.body);
-    final List mecanicaList = bodyJson['caracteristicas'];
+
+    try {
+      var response = await http.get(
+        url,
+        headers: header,
+      );
+      var bodyJson = jsonDecode(response.body);
+      final List mecanicaList = bodyJson['caracteristicas'];
+      final List<Widget> mecanicas = getMecanicas(mecanicaList);
+      final String expansao = bodyJson['expansao'] == true ? 'É' : 'Não é';
+      detailsGameMap = {
+        'capa': bodyJson['urlCapa'],
+        'nome': bodyJson['nome'],
+        'descricao': bodyJson['descricao'],
+        'minimo_jogadores': bodyJson['minimoJogadores'],
+        'maximo_jogadores': bodyJson['maximoJogadores'],
+        'duracao': bodyJson['duracaoMedia'],
+        'ano': bodyJson['ano'],
+        'mecanicas': mecanicas,
+        'expansao': expansao,
+      };
+      return toDetailsGame(detailsGameMap);
+    } catch (e) {
+      throw Exception('erro $e');
+    }
+  }
+
+  List<Widget> getMecanicas(List mecanicaList) {
     List<Widget> mecanicas = [];
     int indexElement = 1;
-
     for (var element in mecanicaList) {
       if (element['tipo'] == 'MECANICA') {
         mecanicas.add(
@@ -35,19 +57,10 @@ class DetailsGameDao {
         continue;
       }
     }
+    return mecanicas;
+  }
 
-    detailsGame = {
-      'capa': bodyJson['urlCapa'],
-      'nome': bodyJson['nome'],
-      'descricao': bodyJson['descricao'],
-      'minimo_jogadores': bodyJson['minimoJogadores'],
-      'maximo_jogadores': bodyJson['maximoJogadores'],
-      'duracao': bodyJson['duracaoMedia'],
-      'ano': bodyJson['ano'],
-      'mecanicas': mecanicas,
-      'expansao': bodyJson['expansao'],
-    };
-
-    return detailsGame;
+  DetailsGame toDetailsGame(Map map) {
+    return DetailsGame.fromMap(map);
   }
 }

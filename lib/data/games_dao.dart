@@ -1,20 +1,20 @@
 import 'dart:convert';
 import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:bolsa_projeto/models/game.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 import '../components/card_game.dart';
 
 class JogosDao {
   Future<List<CardGame>?> getGames(int pagina, List<CardGame> lista) async {
+    String token = await Preferences().getToken();
+    var url = Uri.parse("http://206.189.206.44:8080/api/jogo?page=$pagina");
+    var header = {
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    };
     try {
-      String token = await Preferences().getToken();
-
-      var url = Uri.parse("http://206.189.206.44:8080/api/jogo?page=$pagina");
-      var header = {
-        'Content-Type': 'application/json',
-        'Authorization': token,
-      };
       var response = await http.get(
         url,
         headers: header,
@@ -27,7 +27,7 @@ class JogosDao {
         return lista;
       }
     } catch (e) {
-      return null;
+      throw Exception('erro: $e');
     }
   }
 

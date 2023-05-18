@@ -2,13 +2,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
   Future<void> save(String token) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', token);
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token);
+    } catch (e) {
+      throw Exception('erro ao salvar');
+    }
   }
 
   Future<void> delete() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', '');
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', '');
+    } catch (e) {
+      throw Exception('erro ao sair');
+    }
   }
 
   Future<String> getToken() async {

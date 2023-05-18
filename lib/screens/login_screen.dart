@@ -1,6 +1,4 @@
-import 'package:bolsa_projeto/data/datails_game_dao.dart';
 import 'package:bolsa_projeto/data/logar.dart';
-import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:bolsa_projeto/helpers/is_null_or_empty.dart';
 
@@ -14,8 +12,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _senha = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return null;
                               }
                             },
-                            controller: _email,
+                            controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
                               label: Text("Email"),
@@ -78,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return null;
                               }
                             },
-                            controller: _senha,
+                            controller: _senhaController,
                             keyboardType: TextInputType.text,
                             obscureText: _isObscure,
                             decoration: InputDecoration(
@@ -103,12 +101,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        logar(_email.text, _senha.text).then((value) {
+                        logar(_emailController.text, _senhaController.text)
+                            .then((value) {
                           if (value == 'Logado com sucesso') {
+                            FocusScope.of(context).requestFocus(FocusNode());
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(
-                                  SnackBar(
-                                    duration: Duration(seconds: 1),
+                                  const SnackBar(
+                                    duration: Duration(milliseconds: 500),
                                     content: Text("Logado com sucesso"),
                                   ),
                                 )

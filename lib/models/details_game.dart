@@ -1,22 +1,36 @@
+import 'package:flutter/material.dart';
+
 class DetailsGame {
-  final String capa;
+  final String? capa;
   final String nome;
-  final String ano;
-  final String minimo_jogadores;
-  final String maximo_jogadores;
-  final String duracao;
+  final int ano;
+  final int minimoJogadores;
+  final int maximoJogadores;
+  final int duracao;
   final String descricao;
-  final Map<String, String> mecanicas;
-  final bool isExpansao;
+  final List<Widget> mecanicas;
+  final String isExpansao;
 
   DetailsGame(
-      this.capa,
-      this.nome,
-      this.ano,
-      this.minimo_jogadores,
-      this.maximo_jogadores,
-      this.duracao,
-      this.descricao,
-      this.mecanicas,
-      this.isExpansao);
+    this.capa,
+    this.nome,
+    this.ano,
+    this.duracao,
+    this.descricao,
+    this.mecanicas,
+    this.isExpansao,
+    this.minimoJogadores,
+    this.maximoJogadores,
+  );
+
+  DetailsGame.fromMap(Map map)
+      : capa = map['capa'],
+        nome = map['nome'],
+        descricao = map['descricao'],
+        minimoJogadores = map['minimo_jogadores'],
+        maximoJogadores = map['maximo_jogadores'],
+        duracao = map['duracao'],
+        ano = map['ano'],
+        mecanicas = map['mecanicas'],
+        isExpansao = map['expansao'];
 }

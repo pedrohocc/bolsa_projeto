@@ -1,5 +1,3 @@
-import 'package:bolsa_projeto/data/datails_game_dao.dart';
-import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:bolsa_projeto/screens/details_game_screen.dart';
 import 'package:bolsa_projeto/screens/games_screen.dart';
 import 'package:bolsa_projeto/screens/login_screen.dart';
@@ -67,7 +65,14 @@ ThemeData theme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       textStyle: MaterialStatePropertyAll(GoogleFonts.aBeeZee()),
-      backgroundColor: MaterialStatePropertyAll(Colors.deepPurple),
+      backgroundColor: const MaterialStatePropertyAll(Colors.deepPurple),
+    ),
+  ),
+  snackBarTheme: const SnackBarThemeData(
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.deepPurple,
+    contentTextStyle: TextStyle(
+      color: Colors.white,
     ),
   ),
 );

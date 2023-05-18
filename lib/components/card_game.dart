@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_network/image_network.dart';
 
 import '../models/game.dart';
@@ -17,7 +16,7 @@ class CardGame extends StatelessWidget {
           width: 300,
           child: Container(
             decoration: BoxDecoration(
-                color: Color.fromARGB(119, 155, 48, 255),
+                color: const Color.fromARGB(119, 155, 48, 255),
                 borderRadius: BorderRadius.circular(10)),
             child: SizedBox(
               child: Row(
@@ -26,12 +25,12 @@ class CardGame extends StatelessWidget {
                 children: [
                   ImageNetwork(
                     image: game.getImagem() ?? '',
-                    onError: Icon(Icons.no_photography_outlined),
+                    onError: const Icon(Icons.no_photography_outlined),
                     height: 100,
                     width: 100,
                     fitWeb: BoxFitWeb.fill,
                     fitAndroidIos: BoxFit.fill,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         bottomLeft: Radius.circular(10)),
                   ),
@@ -51,7 +50,7 @@ class CardGame extends StatelessWidget {
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        Text(
+                        const Text(
                           'Clique para ver mais',
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,

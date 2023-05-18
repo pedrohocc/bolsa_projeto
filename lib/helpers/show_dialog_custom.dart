@@ -6,22 +6,27 @@ void exibirDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text('Confirmação'),
-        content: Text('Deseja mesmo sair?'),
+        title: const Text('Confirmação'),
+        content: const Text('Deseja mesmo sair?'),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text("NÂO"),
+            child: const Text("NÂO"),
           ),
           TextButton(
             onPressed: () {
               Preferences().delete().then((value) {
                 Navigator.of(context).pushReplacementNamed('/');
+              }).catchError((e) {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: e),
+                );
               });
             },
-            child: Text("SIM"),
+            child: const Text("SIM"),
           )
         ],
       );
