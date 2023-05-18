@@ -1,4 +1,5 @@
 import 'package:bolsa_projeto/data/logar.dart';
+import 'package:bolsa_projeto/data/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:bolsa_projeto/helpers/is_null_or_empty.dart';
 
@@ -115,7 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 .closed
                                 .then((value) => {
                                       Navigator.of(context)
-                                          .pushReplacementNamed('/games')
+                                          .pushNamedAndRemoveUntil('/games',
+                                              (Route<dynamic> route) => false)
                                     });
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(

@@ -181,6 +181,7 @@ class _DetailsGameScreenState extends State<DetailsGameScreen> {
                                       child: RichText(
                                         text: TextSpan(
                                           text: 'Esse jogo ',
+                                          style: TextStyle(color: Colors.white),
                                           children: [
                                             TextSpan(
                                               text: details.isExpansao,
@@ -188,7 +189,10 @@ class _DetailsGameScreenState extends State<DetailsGameScreen> {
                                                   color: Colors.blue),
                                             ),
                                             const TextSpan(
-                                                text: ' uma expansão')
+                                              text: ' uma expansão',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )
                                           ],
                                         ),
                                       ),
